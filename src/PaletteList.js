@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 
-export default class PaletteList extends Component {
+class PaletteList extends Component {
   render() {
     const { palettes } = this.props;
     return (
@@ -10,11 +10,10 @@ export default class PaletteList extends Component {
         <MiniPalette />
         <h1>React Colors</h1>
         {palettes.map(palette => (
-          <p>
-            <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
-          </p>
+          <MiniPalette key={palette.id} {...palette} />
         ))}
       </div>
     );
   }
 }
+export default PaletteList;

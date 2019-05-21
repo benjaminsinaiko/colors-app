@@ -9,15 +9,34 @@ function generatePalette(starterPalette) {
     emoji: starterPalette.emoji,
     colors: {},
   };
-  for (const level of levels) {
-    newPalette.colors[level] = [];
+
+  function getRange(hexColor) {
+    const end = '#fff';
+    return [
+      chroma(hexColor)
+        .darken(1.4)
+        .hex(),
+      hexColor,
+      end,
+    ];
   }
+
+  function getScale(hexColor, numberOfColors) {
+    return chroma
+      .scale(getRange(hexColor))
+      .mode('lab')
+      .colors(numberOfColors);
+  }
+
+  levels.map(level => (newPalette.colors[level] = []));
+
   for (const color of starterPalette.colors) {
     const scale = getScale(color.color, 10).reverse();
     for (const i in scale) {
       newPalette.colors[levels[i]].push({
         name: `${color.name} ${levels[i]}`,
-        id: `${color.name.toLowerCase().replace(/ /g, '-')}-${levels[i]}`,
+        level: levels[i],
+        id: `${color.name.toLowerCase().replace(/ /g, '-')}`,
         hex: scale[i],
         rgb: chroma(scale[i]).css(),
         rgba: chroma(scale[i]).css('rgba'),
@@ -27,22 +46,4 @@ function generatePalette(starterPalette) {
   return newPalette;
 }
 
-function getRange(hexColor) {
-  const end = '#fff';
-  return [
-    chroma(hexColor)
-      .darken(1.4)
-      .hex(),
-    hexColor,
-    end,
-  ];
-}
-
-function getScale(hexColor, numberOfColors) {
-  return chroma
-    .scale(getRange(hexColor))
-    .mode('lab')
-    .colors(numberOfColors);
-}
-
-export { generatePalette };
+export default generatePalette;

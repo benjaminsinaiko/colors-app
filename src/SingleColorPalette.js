@@ -6,7 +6,6 @@ class SingleColorPalette extends Component {
     super(props);
     const { palette, colorId } = this.props;
     this._shades = this.gatherShades(palette, colorId);
-    console.log(this._shades);
   }
 
   gatherShades = (palette, colorToFilterBy) => {

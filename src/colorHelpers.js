@@ -28,11 +28,14 @@ function generatePalette(starterPalette) {
       .colors(numberOfColors);
   }
 
-  levels.map(level => (newPalette.colors[level] = []));
+  levels.forEach((level) => {
+    newPalette.colors[level] = [];
+  });
 
-  for (const color of starterPalette.colors) {
+  starterPalette.colors.forEach((color) => {
     const scale = getScale(color.color, 10).reverse();
-    for (const i in scale) {
+    const scaleKeys = Object.keys(scale);
+    scaleKeys.forEach((i) => {
       newPalette.colors[levels[i]].push({
         name: `${color.name} ${levels[i]}`,
         level: levels[i],
@@ -41,8 +44,9 @@ function generatePalette(starterPalette) {
         rgb: chroma(scale[i]).css(),
         rgba: chroma(scale[i]).css('rgba'),
       });
-    }
-  }
+    });
+  });
+
   return newPalette;
 }
 

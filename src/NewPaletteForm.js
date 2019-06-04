@@ -116,6 +116,19 @@ class NewPaletteForm extends Component {
     this.setState({ newName: e.target.value });
   };
 
+  handleSubmit = () => {
+    const newName = 'New Test Palette';
+    const { colors } = this.state;
+    const { savePalette } = this.props;
+    const newPalette = {
+      paletteName: 'New Test Palette',
+      id: newName.toLowerCase().replace(/ /g, '-'),
+      colors,
+    };
+    savePalette(newPalette);
+    this.props.history.push('/');
+  };
+
   render() {
     const { classes } = this.props;
     const {
@@ -127,6 +140,7 @@ class NewPaletteForm extends Component {
         <CssBaseline />
         <AppBar
           position="fixed"
+          color="default"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
@@ -143,6 +157,9 @@ class NewPaletteForm extends Component {
             <Typography variant="h6" color="inherit" noWrap>
               Persistent drawer
             </Typography>
+            <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+              Save Palette
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer

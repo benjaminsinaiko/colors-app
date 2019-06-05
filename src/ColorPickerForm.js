@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import arrayMove from 'array-move';
-import DraggableColorList from './DragableColorList';
-import PaletteFormNav from './PaletteFormNav';
 
 class ColorPickerForm extends Component {
   constructor(props) {
@@ -28,7 +18,7 @@ class ColorPickerForm extends Component {
   }
 
   updateCurrentColor = (newColor) => {
-    this.setState({ currentColor: newColor.hex }, () => {});
+    this.setState({ currentColor: newColor.hex });
   };
 
   handleChange = (e) => {
@@ -43,6 +33,7 @@ class ColorPickerForm extends Component {
       name: newColorName,
     };
     addNewColor(newColor);
+    this.setState({ currentColor: '', newColorName: '' });
   };
 
   render() {

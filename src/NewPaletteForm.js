@@ -7,8 +7,6 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import { ChromePicker } from 'react-color';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import arrayMove from 'array-move';
 import DraggableColorList from './DragableColorList';
 import PaletteFormNav from './PaletteFormNav';
@@ -95,13 +93,9 @@ class NewPaletteForm extends Component {
     this.setState({ open: false });
   };
 
-  updateCurrentColor = (newColor) => {
-    this.setState({ currentColor: newColor.hex }, () => {});
-  };
-
   addNewColor = (newColor) => {
     const { colors } = this.state;
-    this.setState({ colors: [...colors, newColor], newColorName: '' });
+    this.setState({ colors: [...colors, newColor] });
   };
 
   handleChange = (e) => {
@@ -113,10 +107,20 @@ class NewPaletteForm extends Component {
   };
 
   addRandomColor = () => {
+    const { palettes } = this.props;
+    const { colors } = this.state;
+    const allColors = palettes.map(p => p.colors).flat();
+
     // pick random color from existing palettes
-    const allColors = this.props.palettes.map(p => p.colors).flat();
-    const rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    const pickRandomColor = () => {
+      const rand = Math.floor(Math.random() * allColors.length);
+      return allColors[rand];
+    };
+
+    let randomColor = allColors[0];
+    while (colors.includes(randomColor)) {
+      randomColor = pickRandomColor();
+    }
     this.setState(prevState => ({ colors: [...prevState.colors, randomColor] }));
   };
 

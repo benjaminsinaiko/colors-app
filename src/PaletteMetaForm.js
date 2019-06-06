@@ -40,6 +40,7 @@ class PaletteMetaForm extends Component {
       emoji: emoji.native,
     };
     handleSubmit(newPalette);
+    this.setState({ openStage: '' });
   };
 
   handleSubmit = () => {

@@ -4,9 +4,6 @@ import { withStyles } from '@material-ui/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Dialog from '@material-ui/core/Dialog';
 import Avatar from '@material-ui/core/Avatar';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -50,7 +47,7 @@ class PaletteList extends Component {
   };
 
   render() {
-    const { classes, palettes, deletePalette } = this.props;
+    const { classes, palettes } = this.props;
     const { openDeleteDialog } = this.state;
     return (
       <div className={classes.root}>

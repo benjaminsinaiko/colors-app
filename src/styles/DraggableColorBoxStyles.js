@@ -1,3 +1,4 @@
+import chroma from 'chroma-js';
 import sizes from './sizes';
 
 const styles = {
@@ -8,7 +9,7 @@ const styles = {
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
-    marginBottom: '-3.5px',
+    marginBottom: '-4.8px',
     '&:hover svg': {
       color: 'white',
       transform: 'scale(1.3)',
@@ -32,7 +33,7 @@ const styles = {
     left: '0px',
     bottom: '0px',
     padding: '10px',
-    color: 'rgba(0,0,0,0.5)',
+    color: props => (chroma(props.color).luminance() <= 0.09 ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0,0,0,0.6)'),
     letterSpacing: '1px',
     textTransform: 'uppercase',
     fontSize: '12px',

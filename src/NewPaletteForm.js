@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+import seedColors from './seedColors';
 
 import styles from './styles/NewPaletteFormStyles';
 
@@ -22,10 +23,9 @@ class NewPaletteForm extends Component {
 
   constructor(props) {
     super(props);
-    const { palettes } = this.props;
     this.state = {
       open: true,
-      colors: palettes[0].colors.slice(0, 12),
+      colors: seedColors[0].colors.slice(0, 12),
     };
   }
 

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
-import seedColors from './seedColors';
-import NewPaletteForm from './NewPaletteForm';
-import generatePalette from './colorHelpers';
 import Page from './Page';
+import NewPaletteForm from './NewPaletteForm';
+
+import seedColors from './seedColors';
+import generatePalette from './colorHelpers';
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class App extends Component {
     };
   }
 
+  // eslint-disable-next-line react/destructuring-assignment
   findPalette = id => this.state.palettes.find(palette => palette.id === id);
 
   savePalette = (newPalette) => {

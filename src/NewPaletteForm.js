@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import arrayMove from 'array-move';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
@@ -7,10 +8,11 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import arrayMove from 'array-move';
-import DraggableColorList from './DragableColorList';
+
+import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+
 import styles from './styles/NewPaletteFormStyles';
 
 class NewPaletteForm extends Component {
@@ -20,9 +22,10 @@ class NewPaletteForm extends Component {
 
   constructor(props) {
     super(props);
+    const { palettes } = this.props;
     this.state = {
       open: true,
-      colors: this.props.palettes[0].colors.slice(0, 12),
+      colors: palettes[0].colors.slice(0, 12),
     };
   }
 
@@ -67,14 +70,17 @@ class NewPaletteForm extends Component {
 
   handleSubmit = (palette) => {
     const { colors } = this.state;
-    const { savePalette } = this.props;
+    const {
+      savePalette,
+      history: { push },
+    } = this.props;
     const newPalette = {
       ...palette,
       id: palette.paletteName.toLowerCase().replace(/ /g, '-'),
       colors,
     };
     savePalette(newPalette);
-    this.props.history.push('/');
+    push('/');
   };
 
   removeColor = (colorName) => {

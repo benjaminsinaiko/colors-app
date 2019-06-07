@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+
+import Button from '@material-ui/core/Button';
+
 import styles from './styles/ColorPickerFormStyles';
 
 class ColorPickerForm extends Component {
@@ -15,8 +17,14 @@ class ColorPickerForm extends Component {
   }
 
   componentDidMount() {
-    ValidatorForm.addValidationRule('isColorNameUnique', value => this.props.colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase()));
-    ValidatorForm.addValidationRule('isColorUnique', () => this.props.colors.every(({ color }) => color !== this.state.currentColor));
+    /*eslint-disable */
+    ValidatorForm.addValidationRule('isColorNameUnique', value =>
+      this.props.colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase()),
+    );
+    ValidatorForm.addValidationRule('isColorUnique', () =>
+      this.props.colors.every(({ color }) => color !== this.state.currentColor),
+    );
+    /* eslint-enable */
   }
 
   updateCurrentColor = (newColor) => {

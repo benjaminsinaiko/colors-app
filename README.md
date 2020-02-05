@@ -1,13 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# React Colors Project
+# MyPalettes
+## React Colors Project
 
 - A clone of websites like [Flat UI Colors](https://flatuicolors.com/) and [Material UI Colors](http://materialuicolors.co/?utm_source=launchers).
 - One of the projects from Colt Steele's React Bootcamp course.`
 
-<!-- ![image](https://i.imgur.com/9x1F9At.png) -->
+**MyPalettes** is live on [Netlify](https://netlify.com/):
 
-![image](./src/img/colorsApp-home.png)
+[https://mypalettes.netlify.com/](https://mypalettes.netlify.com/)
+
+![image](./src/img/myPalettes-home.png)
 ![image](https://i.imgur.com/GM0etHA.png)
 
 ![image](https://i.imgur.com/QB2zRzf.png)
